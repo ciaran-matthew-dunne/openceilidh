@@ -5,6 +5,7 @@
 {-# LANGUAGE NamedFieldPuns #-}
 import Data.List.Split
 import Data.Aeson
+import Data.Aeson.Encode.Pretty (encodePretty)
 import GHC.Generics
 import System.Process
 import Control.Exception
@@ -28,26 +29,47 @@ import qualified Data.ByteString.Lazy as B
 import qualified Data.ByteString.Base64.Lazy as B64
 import Data.Maybe (listToMaybe)
 
-
-mscore_paths ∷ IO [FilePath]
-mscore_paths = undefined -- TODO. populate with  "/tunes/mscz"
+import System.Directory (listDirectory)
+import System.FilePath ((</>), takeExtension)
 
 data RawTune = RawTune {
   title ∷ String,
   bpm   ∷ Int,
-  tsig  ∷ String, -- (Int, Int),
+  tsig  ∷ (Int, Int),
   zscore ∷ B.ByteString }
   deriving (Show, Generic)
 
-mscore_data :: FilePath -> IO RawTune
+mscore_data :: FilePath → IO RawTune
 mscore_data pth = do
-  let cmd = "musescore4portable --score-media " ++ pth
+  let cmd = "musescore4portable --score-media '" ++ pth ++ "'"
   let prc = shell cmd
   json_out <- readCreateProcess prc ""
   --- do I need to pack/encode-utf8/bstring  before parsing?
   let bstr = B.fromStrict . TE.encodeUtf8 . T.pack $ json_out
   let tune = eitherDecode bstr
   either fail return tune
+
+instance ToJSON RawTune where
+  toJSON RawTune{title, bpm, tsig, zscore} = object
+    [ "title" .= title, "bpm"   .= bpm
+    , "tsig"  .= [fst tsig, snd tsig]
+    , "mxml"  .= ((T.unpack . TE.decodeUtf8 . B.toStrict) $ zscore) ]
+
+writeRawTunes :: [FilePath] → FilePath → IO ()
+writeRawTunes ins out = do
+  rawTunes <- mapM mscore_data ins
+  let json = encodePretty rawTunes
+  B.writeFile out json
+
+mscore_paths :: IO [FilePath]
+mscore_paths = do
+  fs <- listDirectory "tunes/mscz"
+  return [ "tunes/mscz" </> f | f <- fs, takeExtension f == ".mscz" ]
+
+write_all ∷ IO ()
+write_all = do
+  fs <- mscore_paths
+  writeRawTunes fs "tunes.json"
 
 instance FromJSON RawTune where
   parseJSON = withObject "RawTune" $ \v -> do
@@ -57,7 +79,13 @@ instance FromJSON RawTune where
     bpm <- meta .: "tempo"
     tsig_str <- meta .: "timesig"
     let score_bstr = B.fromStrict . TE.encodeUtf8 . T.pack $ score_str
-    return $ RawTune title bpm tsig_str score_bstr
+    return $ RawTune title bpm (mk_tsig tsig_str) score_bstr
+
+mk_tsig ∷ String → (Int, Int)
+mk_tsig str =
+  case map (read . T.unpack) . T.split (=='/') . T.pack $ str of
+    [i,j] -> (i,j)
+    _     -> error "junk time signature"
 
 
 data Tune = Tune
@@ -66,11 +94,7 @@ data Tune = Tune
    score ∷ Document }
   deriving (Show, Generic)
 
-mk_tsig ∷ String → (Int, Int)
-mk_tsig str =
-  case map (read . T.unpack) . T.split (=='/') . T.pack $ str of
-    [i,j] -> (i,j)
-    _     -> error "junk time signature"
+
 
 uzip_score ∷ B.ByteString -> B.ByteString
 uzip_score zstr =
@@ -83,7 +107,7 @@ mk_score = parseLBS_ def . uzip_score . B64.decodeLenient
 
 mk_tune ∷ RawTune -> Tune
 mk_tune RawTune{title, bpm, tsig, zscore} =
-  Tune title bpm (mk_tsig tsig) (mk_score zscore)
+  Tune title bpm tsig (mk_score zscore)
 
 -- gets prologue, boilerplate, and measures.
 doc_data ∷ Document → (Prologue, [Node],[Node])

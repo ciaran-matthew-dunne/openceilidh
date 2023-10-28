@@ -3,7 +3,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE NamedFieldPuns #-}
-
+import Data.List.Split
 import Data.Aeson
 import GHC.Generics
 import System.Process
@@ -30,7 +30,7 @@ import Data.Maybe (listToMaybe)
 
 
 mscore_paths ∷ IO [FilePath]
-mscore_paths = undefined -- TODO. populate with "/tunes/mscz"
+mscore_paths = undefined -- TODO. populate with  "/tunes/mscz"
 
 data RawTune = RawTune {
   title ∷ String,
@@ -85,8 +85,7 @@ mk_tune ∷ RawTune -> Tune
 mk_tune RawTune{title, bpm, tsig, zscore} =
   Tune title bpm (mk_tsig tsig) (mk_score zscore)
 
--- By default, we always grab the "work","identification","part-list" elems
--- from the first Tune in the set.
+-- gets prologue, boilerplate, and measures.
 doc_data ∷ Document → (Prologue, [Node],[Node])
 doc_data doc = (pro, node <$> boiler_cs, node <$> measure_cs)
   where pro = documentPrologue doc
@@ -94,19 +93,20 @@ doc_data doc = (pro, node <$> boiler_cs, node <$> measure_cs)
         boiler_cs = (element "score-partwise" &/ checkName (`elem` ["work","identification","part-list"])) cur
         measure_cs = (element "score-partwise" &/ element "part" &/ element "measure") cur
 
+has_rh ∷ Node → Bool
+has_rh node = not . null $ fromNode node $// element "rehearsal"
+
+split_measures ∷ [Node] → [[Node]]
+split_measures ns = split (keepDelimsL $ whenElt has_rh) ns
+
+(_,_,ms) = doc_data . mk_score $ spoot
+
 mk_doc ∷ (Prologue, [Node],[Node]) -> Document
 mk_doc (pro,hd,bdy) = Document pro score_elem []
   where score_elem = Element "score-partwise" (M.singleton "version" "4.0")
                    $ hd ++ [NodeElement measure_elem]
         measure_elem = Element "part" (M.singleton "id" "P1") bdy
-        -- part_list = Element "part-list" M.empty
-        --           $ [ NodeElement $ Element "score-part" (M.singleton "id" "P1")
-        --           $   NodeElement <$> [ part_name, score_inst ] ]
-        -- part_name = Element "part-name" M.empty [NodeContent "Piano"]
-        -- score_inst = Element "score-instrument" (M.singleton "id" "P1-I1")
-        --            $ NodeElement <$> [name, sound]
-        -- name  = Element "instrument-name"  M.empty [NodeContent "Piano"]
-        -- sound = Element "instrument-sound" M.empty [NodeContent "keyboard.piano"]
+
 writeXML ∷ Document -> IO ()
 writeXML doc = B.writeFile "wil-cmd.musicxml" xml_bstr
   where xml_bstr = renderLBS def{ rsPretty = False } doc

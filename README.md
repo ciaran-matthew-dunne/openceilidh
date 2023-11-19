@@ -4,10 +4,9 @@
 `opencelilidh` aims to provide tools for humans who interact with traditional Scottish music. 
 The core representation used for musical score is
   [MusicXML 4.0](https://www.w3.org/2021/06/musicxml40/musicxml-reference/).
+Internally, we use the Haskell [`Text.XML`](https://hackage.haskell.org/package/xml-conduit-1.9.1.3/docs/Text-XML.html) module to work with MusicXML documents[^1].
 
 ![Pixel art of robots playing together against the backdrop of a Scottish village.](robots.webp)
-
-Internally, we use the Haskell [`Text.XML`](https://hackage.haskell.org/package/xml-conduit-1.9.1.3/docs/Text-XML.html) module to work with MusicXML documents[^1].
 
 
 [^1]: There are two Haskell libraries that provide datatypes specifically for 

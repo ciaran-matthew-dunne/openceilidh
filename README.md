@@ -4,6 +4,9 @@
 `opencelilidh` aims to provide tools for humans who interact with traditional Scottish music. 
 The core representation used for musical score is
   [MusicXML 4.0](https://www.w3.org/2021/06/musicxml40/musicxml-reference/).
+
+![Pixel art of robots playing together against the backdrop of a Scottish village.](robots.webp)
+
 Internally, we use the Haskell [`Text.XML`](https://hackage.haskell.org/package/xml-conduit-1.9.1.3/docs/Text-XML.html) module to work with MusicXML documents[^1].
 
 
@@ -28,8 +31,7 @@ in sequences of measures, the musical content of a section may be repeated.
 We refer to iteration `n` of the musical content in section `S` as `Sₙ`.
 
 A "ceilidh set" is a sequence of tune executions. Hereinafter, we call these 
-"seata" (the Gaelic word for "set") to avoid a name-clash with the mathematical concept of [set]
-  (https://en.wikipedia.org/wiki/Set_(mathematics)).
+"seata" (the Gaelic word for "set") to avoid a name-clash with the mathematical concept of [set](https://en.wikipedia.org/wiki/Set_(mathematics)).
 
 - A *measure* has type `Node` (imported by `Text.XML`). 
 

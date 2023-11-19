@@ -156,10 +156,18 @@ findTunes ∷ [String] → [Tune] → [Tune]
 findTunes ts tunes =
     catMaybes $ map (\str -> find (\Tune{title} -> title == str) tunes) ts
 
+
+
+-- WIP. strategy for merging tunes:
+
 data Seata = Seata {
   title :: String,
   tune_seq :: [(Tune,[Char])]
 } deriving (Show, Generic)
+
+
+
+
 
 meas_notes ∷ Node → [Node]
 meas_notes meas = map node (fromNode meas $/ element "note")
@@ -209,9 +217,7 @@ main :: IO ()
 main = do
   ts <- allTunes
   doc <- templateXML
-  let ts' = findTunes ["Skye Boat Song", "The Dark Island"] ts
-  let set = Seata "Waltz Set" (zip ts' ["AB", "AB"])
+  let ts' = findTunes ["Skye Boat Song", "The Dark Island", "The Black Mask"] ts
+  let set = Seata "Waltz Set" (zip ts' ["AB", "AB", "ABCB"])
   let doc' = insert_measures (seata_measures set) doc
   writeXML doc' "Waltz_Set.musicxml"
-
-

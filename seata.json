@@ -1,0 +1,52 @@
+[
+  {
+    "title" : "Waltz Set",
+    "tempo" : 150,
+    "tunes" : [
+      ["Skye Boat Song", "ABAB"],
+      ["The Dark Island", "ABAB"],
+      ["The Black Mask", "ABCB"]
+    ]
+  },
+  {
+    "title" : "Ashokan Set",
+    "tempo" : 150,
+    "tunes" : [
+      ["Miss Rowan Davies", "ABAB"],
+      ["Ye Banks and Braes", "ABAB"],
+      ["Ashokan Farewell", "ABAB"]
+    ]
+  },
+  {
+    "title" : "Cashback Set",
+    "tempo" : 222,
+    "tunes" : [
+      ["Atholl Highlanders", "ABCD"],
+      ["Lisnagun", "ABAB"],
+      ["The Roaring Barmaid", "ABAB"],
+      ["£50 Cashback", "ABCABC"],
+      ["The Grackle", "ABCDABCD"]
+    ]
+  },
+  {
+    "title" : "Celestial Set",
+    "tempo" : 172,
+    "tunes" : [
+      ["Donald MacLean's Farwell To Oban", "ABCD"],
+      ["L'Air Mignonne", "ABAB"],
+      ["Celestial", "ABAB"],
+      ["Tetris", "AABAA"]
+    ]
+  },
+  {
+    "title" : "Ram Set",
+    "tempo" : 108,
+    "tunes" : [
+      ["Spottiskerry", "ABAB"],
+      ["Willafjord", "ABAB"],
+      ["Wind Up", "ABAB"],
+      ["The Black and White Binoculars", "ABAB"],
+      ["The Ram", "ABCD"]
+    ]
+  }
+]

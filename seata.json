@@ -1,7 +1,28 @@
 [
   {
-    "title" : "Waltz Set",
-    "tempo" : 150,
+    "title" : "Sinners",
+    "tempo" : 120,
+    "tunes" : [
+      ["Scotland the Brave", "ABAB"],
+      ["Tell Me Ma", "AB"],
+      ["Sinners", "ABAB"],
+      ["The Curious Beetle", "ABAB"]
+    ]
+  },
+  {
+    "title" : "Sergeant",
+    "tempo" : 116,
+    "tunes" : [
+      ["Dashing White Sergeant", "ABAB"],
+      ["The De'il amang the Tailors", "ABAB"],
+      ["Soldier's Joy", "ABAB"],
+      ["Mrs MacLeod of Raasay", "ABAB"],
+      ["Toria's 50th", "ABAB"]
+    ]
+  },
+  {
+    "title" : "Waltz",
+    "tempo" : 132,
     "tunes" : [
       ["Skye Boat Song", "ABAB"],
       ["The Dark Island", "ABAB"],
@@ -9,16 +30,16 @@
     ]
   },
   {
-    "title" : "Ashokan Set",
-    "tempo" : 150,
+    "title" : "Celestial",
+    "tempo" : 172,
     "tunes" : [
-      ["Miss Rowan Davies", "ABAB"],
-      ["Ye Banks and Braes", "ABAB"],
-      ["Ashokan Farewell", "ABAB"]
+      ["Donald MacLean's Farewell To Oban", "ABCD"],
+      ["L'Air Mignonne", "ABAB"],
+      ["Celestial", "ABAB"]
     ]
   },
   {
-    "title" : "Cashback Set",
+    "title" : "Cashback",
     "tempo" : 222,
     "tunes" : [
       ["Atholl Highlanders", "ABCD"],
@@ -29,17 +50,7 @@
     ]
   },
   {
-    "title" : "Celestial Set",
-    "tempo" : 172,
-    "tunes" : [
-      ["Donald MacLean's Farwell To Oban", "ABCD"],
-      ["L'Air Mignonne", "ABAB"],
-      ["Celestial", "ABAB"],
-      ["Tetris", "AABAA"]
-    ]
-  },
-  {
-    "title" : "Ram Set",
+    "title" : "Ram",
     "tempo" : 108,
     "tunes" : [
       ["Spottiskerry", "ABAB"],
@@ -47,6 +58,56 @@
       ["Wind Up", "ABAB"],
       ["The Black and White Binoculars", "ABAB"],
       ["The Ram", "ABCD"]
+    ]
+  },
+  {
+    "title" : "Thursday",
+    "tempo" : 132,
+    "tunes" : [
+      ["Tripping Upstairs", "ABAB"],
+      ["Irish Washerwoman", "ABAB"],
+      ["Thursday Night", "ABAB"],
+      ["The Knife", "ABAB"],
+      ["That One", "ABABA"]
+    ]
+  },
+  {
+    "title" : "Dingieshowe",
+    "tempo" : 172,
+    "tunes" : [
+      ["The Dingieshowe Dancers", "ABCDBC"],
+      ["Twins", "ABAB"],
+      ["Irene's Reel", "ABAB"],
+      ["Double-Header", "ABCDABCD"]
+    ]
+  },
+  {
+    "title" : "Ashokan",
+    "tempo" : 148,
+    "tunes" : [
+      ["Miss Rowan Davies", "ABAB"],
+      ["Ye Banks and Braes", "ABAB"],
+      ["Ashokan Farewell", "ABAB"]
+    ]
+  },
+  {
+    "title" : "Morrison",
+    "tempo" : 140,
+    "tunes" : [
+      ["Clare", "ABAB"],
+      ["Mrs O'Sullivan's", "ABAB"],
+      ["The Rabbit and the Lamb", "ABAB"],
+      ["The Famous Baravan", "ABAB"],
+      ["Morrison's", "ABAB"],
+      ["The Lounge Bar", "ABCDABCD"],
+      ["Burdland", "ABCDABCD"]
+    ]
+  },
+  {
+    "title" : "Auld Lang Syne",
+    "tempo" : 132,
+    "tunes" : [
+      ["Auld Lang Syne", "ABAB"]
     ]
   }
 ]

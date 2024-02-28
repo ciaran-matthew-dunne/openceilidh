@@ -26,7 +26,7 @@ import Text.XML.Cursor
 -- File system and process imports
 import System.Process
 import System.Directory (listDirectory)
-import System.FilePath ((</>), takeExtension)
+import System.FilePath ((</>), takeExtension, replaceExtension)
 
 -- Zip archive imports
 import Codec.Archive.Zip (toArchive, fromEntry, findEntryByPath)
@@ -51,6 +51,8 @@ instance ToJSON RawTune where
     , "mxml"  .= (T.unpack . TE.decodeUtf8 . B.toStrict $ zscore)
     ]
 
+
+-- truncate title on NEWLINE
 instance FromJSON RawTune where
   parseJSON = withObject "RawTune" $ \v -> do
     score_str <- v .: "mxml"
@@ -58,7 +60,7 @@ instance FromJSON RawTune where
     title <- meta .: "title"
     tsig_str <- meta .: "timesig"
     let bstr = B.fromStrict . TE.encodeUtf8 . T.pack $ score_str
-    return $ RawTune title (mk_tsig tsig_str) bstr
+    return $ RawTune (takeWhile (/='\n') title) (mk_tsig tsig_str) bstr
 
 mk_tsig str =
     case map (read . T.unpack) . T.split (=='/') . T.pack $ str of
@@ -66,8 +68,8 @@ mk_tsig str =
       _     -> error "Invalid time signature"
 
 -- Call musescore to create read RawTune data from filepath.
-mscore_data :: FilePath → IO RawTune
-mscore_data pth = do
+mscoreData :: FilePath → IO RawTune
+mscoreData pth = do
   let cmd = "musescore4portable --score-media '" ++ pth ++ "'"
   json_out <- readCreateProcess (shell cmd) ""
   let bstr = B.fromStrict . TE.encodeUtf8 . T.pack $ json_out
@@ -76,8 +78,9 @@ mscore_data pth = do
 -- Given a list of filepaths, write RawTunes to JSON.
 writeRawTunes :: [FilePath] → FilePath → IO ()
 writeRawTunes ins out = do
-  rawTunes <- mapM mscore_data ins
+  rawTunes <- mapM mscoreData ins
   B.writeFile out $ encodePretty rawTunes
+
 
 -- Grab all musescore file paths in `tunes/mscz`.
 mscore_paths :: IO [FilePath]
@@ -85,19 +88,10 @@ mscore_paths = do
   fs <- listDirectory "tunes/mscz"
   return [ "tunes/mscz" </> f | f <- fs, takeExtension f == ".mscz" ]
 
-write_all :: IO ()
-write_all = do
+mkTuneJSON :: IO ()
+mkTuneJSON = do
   fs <- mscore_paths
   writeRawTunes fs "tunes.json"
-
--- measures are XML nodes. generally, things of type Node are measures.
-type Section = (Maybe Node, [Node])
-type SecMap = M.Map Char Section
-data Tune = Tune {
-  title :: String,
-  tsig  :: (Int, Int),
-  score :: SecMap
-} deriving (Show, Generic)
 
 -- Create a musicXML score from a base64 encoded string.
 b64_to_xml :: B.ByteString → Document
@@ -106,27 +100,13 @@ b64_to_xml = parseLBS_ def . uzip_score . B64.decodeLenient
               Nothing -> error "no score.xml"
               Just e  -> fromEntry e)
 
--- Grab measures from MusicXML document.
-measures :: Document → [Node]
-measures doc = node <$> (meas_q . fromDocument $ doc)
-  where
-    meas_q = element "score-partwise" &/ element "part" &/ element "measure"
 
--- Extract rehearsal ID from a 'measure' node.
-rh_id :: Node -> Char
-rh_id nd =
-    case fromNode nd $// element "rehearsal" of
-        [x] -> T.head . head $ (x $/ content)
-        _   -> error $ "no rehearsal mark in: " ++ show nd
-
-split_measures :: [Node] -> SecMap
-split_measures nodes = M.fromList (zip keys secs)
-  where
-    hasRH node = not . null $ fromNode node $// element "rehearsal"
-    splits = split (keepDelimsL . whenElt $ hasRH) nodes
-    (anacrusis : (a_part : mss)) = splits
-    secs = (listToMaybe anacrusis, a_part) : [(Nothing, ms) | ms <- mss]
-    keys = map (rh_id . head . snd) secs
+-- Measures are XML nodes. generally, things of type Node are measures.
+data Tune = Tune {
+  title :: String,
+  tsig  :: (Int, Int),
+  score :: Document
+} deriving (Show, Generic)
 
 instance FromJSON Tune where
   parseJSON = withObject "Tune" $ \v -> do
@@ -134,113 +114,165 @@ instance FromJSON Tune where
     tsig  <- v .: "tsig"
     zbstr <- v .: "mxml"
     let doc = b64_to_xml . B.fromStrict . TE.encodeUtf8 . T.pack $ zbstr
-    return Tune{title, tsig, score = split_measures . measures $ doc}
+    return $ Tune title tsig doc
+
+type Section = [Node]
+type SecMap = M.Map Char Section
 
 allTunes :: IO [Tune]
 allTunes = do
   f <- B.readFile "tunes.json"
   either fail return $ eitherDecode f
 
--- WIP strategy for merging tunes:
--- "if section Y has an anacrusis, merge the last measure of X with the anacrusis of Y
--- in a way that preserves the timing..." far too difficult right now.
--- would figure out how many beats in a measure and make sure the merge doesn't exceed this.
--- in the case that they do, you should just replace the last measure by the anacrusis.
--- for now, there will be NO anacrusis.
+-- Grab measures from MusicXML document.
+measures :: Document → [Node]
+measures doc = node <$> (meas_q . fromDocument $ doc)
+  where meas_q = element "score-partwise" &/ element "part" &/ element "measure"
 
--- changing the tempo of a musicxml can be done by changing:
---  <sound tempo="XXX"> in the <direction> element
+sections ∷ [Node] → [Section]
+sections nodes = split (keepDelimsL . whenElt $ hasRH) nodes
+  where hasRH node = not . null $ fromNode node $// element "rehearsal"
+
+-- Extract rehearsal ID from a 'measure' node.
+rh_id :: Node -> Char
+rh_id nd =
+    case fromNode nd $// element "rehearsal" of
+        [x] -> case (x $/ content) of
+            [] -> error $ "empty!: " ++ show x
+            xs -> T.head . head $ xs
+        _   -> error $ "no rehearsal mark in: " ++ show nd
+
+mk_secmap :: Tune -> SecMap
+mk_secmap tune = M.fromList (zip keys xs)
+  where
+    xs  = tail . sections . measures . score $ tune
+    keys = map (rh_id . head) xs
+
+
 data Seata = Seata {
   title :: String,
   tempo :: Int,
-  tunes :: [(String,[Char])]
+  arrng :: [(String,[Char])]
 } deriving (Show, Generic)
+
+-- Given a list of tunes `ts` and a string, return tune with that title.
+findTune ∷ [Tune] → String → Tune
+findTune ts str = case find (\Tune{title} -> title == str) ts of
+  Just t  -> t
+  Nothing -> error $ "Tune not found: " ++ str
 
 instance FromJSON Seata where
   parseJSON = withObject "Seata" $ \v -> do
     title <- v .: "title"
     tempo <- v .: "tempo"
-    tunes <- v .: "tunes"
-    return Seata{title, tempo, tunes}
+    arrng <- v .: "tunes"
+    return Seata{title, tempo, arrng}
 
 allSeata :: IO [Seata]
 allSeata = do
   f <- B.readFile "seata.json"
   either fail return $ eitherDecode f
 
--- Given a tune and a list of section-identifiers, create a list of sections.
-get_tune_secs ∷ (Tune,[Char]) → [Section]
-get_tune_secs (tune,str) = catMaybes . map (score tune !?) $ str
-
-findTunes ∷ [Tune] → [String] → [Tune]
-findTunes ts ts_str =
-    catMaybes $ map (\str -> find (\Tune{title} -> title == str) ts) ts_str
-
--- Given a Seata, create a list of measures corresponding to the tune sequence.
--- Also, for any `<sound tempo="XXX">` element in any measure `Node`, change the value to `tempo`
-seata_measures ∷ [Tune] → Seata → [Node]
-seata_measures ts Seata{title, tempo, tunes} = (modify_tempo tempo n : ns)
+-- Given a tune and a list of section IDs, return the measures for that arrangement.
+arrangeScore ∷ Tune → [Char] → [Node]
+arrangeScore t@Tune{title} code = concatMap get_sec code
   where
-    tune_seq = zip (findTunes ts (map fst tunes)) (map snd tunes)
-    nss = concatMap snd (concatMap get_tune_secs tune_seq)
-    (n : ns) = map clean_measure nss
+    get_sec idx = case M.lookup idx (mk_secmap t) of
+        Just x  -> x
+        Nothing -> error $ "Can't find section " ++ [idx] ++ " in " ++ title
 
+-- Given a list of tunes and a seata, return the measures for that set.
+seataPreScore ∷ [Tune] -> Seata -> [Node]
+seataPreScore ts seata = concatMap f (arrng seata)
+  where f (str,code) = arrangeScore (findTune ts str) code
+
+
+
+------ Controlling tempo of MXML
+
+-- `clean_measure`, `tempo_elem`, `modify_tempo` are very hacky ways of dealing with tempo normalization...
+-- I think we just remove all 'direction' nodes in XML and then insert our own?
 clean_measure ∷ Node → Node
 clean_measure nd = case nd of
-  NodeElement (Element name attrs _) -> NodeElement (Element name attrs (node <$> cs))
+  NodeElement (Element name attrs _) ->
+    NodeElement (Element name attrs (node <$> cs))
   _ → nd
   where cs = fromNode nd $/ checkName (/="direction")
 
-modify_tempo :: Int → Node → Node
-modify_tempo bpm (NodeElement (Element name attr ns)) =
+tempo_elem ∷ Int → Node
+tempo_elem bpm = NodeElement $
+  Element "sound" (M.singleton "tempo" (T.pack . show $ bpm)) []
+
+add_tempo_elem ∷ Int → Node → Node
+add_tempo_elem bpm (NodeElement (Element name attr ns)) =
   NodeElement (Element name attr (tempo_elem bpm : ns))
 
-tempo_elem :: Int → Node
-tempo_elem bpm = NodeElement $ Element "sound" (M.singleton "tempo" (T.pack . show $ bpm)) []
+seataScore ∷ [Tune] → Seata → [Node]
+seataScore ts s@Seata{title,tempo} = case seataPreScore ts s of
+  []     → error $ "Empty score for seata: " ++ title
+  (x:xs) → (add_tempo_elem tempo x) : xs
 
-debug str k = NodeComment . T.pack $ ("TUNE: " ++ str ++ ", SECTION: " ++ show k)
+------ Main execution ----------------------------------------
 
+-- grab template mxml doc
+templateXML ∷ IO Document
+templateXML = parseLBS_ def <$> (B.readFile "template.mxml")
+
+-- write mxml doc to filepath
+writeXML :: Document -> FilePath -> IO ()
+writeXML doc pth = B.writeFile pth $ renderLBS def{ rsPretty = False } doc
+
+-- insert measures in main body of mxml doc
 insert_measures ∷ [Node] -> Document -> Document
 insert_measures ms (Document pro (Element name attr ns) _) =
   Document pro new_root [] where
     new_root  = Element name attr (ns ++ [NodeElement part_elem])
     part_elem = Element "part" (M.singleton "id" "P1") ms
 
--- Read template musicXML file for us to insert measures.
-templateXML ∷ IO Document
-templateXML = parseLBS_ def <$> (B.readFile "template.mxml")
-
-writeXML :: Document -> FilePath -> IO ()
-writeXML doc pth = B.writeFile pth $ renderLBS def{ rsPretty = False } doc
-
+-- given a list of tunes and a seata,
+--  DO: create score, insert in template, and write doc to file
 makeSeataXML :: [Tune] → Seata → IO ()
-makeSeataXML ts set@Seata{title,tempo,tunes} = do
+makeSeataXML ts s@Seata{title} = do
+  print $ "Making XML for " ++ title
   doc <- templateXML
-  let doc' = insert_measures (seata_measures ts set) doc
-  writeXML doc' ("tunes/mxml/" ++ title ++ ".musicxml")
+  let doc' = insert_measures (seataScore ts s) doc
+  writeXML doc' ("seata/mxml/" ++ title ++ ".musicxml")
 
--- Main execution
 main :: IO ()
 main = do
   ts <- allTunes
-  seata <- allSeata
-  mapM_ (makeSeataXML ts) seata
+  ss <- allSeata
+  mapM_ (makeSeataXML ts) ss
+
+makeMP3 ∷ FilePath -> FilePath -> IO ()
+makeMP3 in_path out_path = callCommand cmd
+  where cmd = "mscore4portable --debug '" ++ in_path ++ "' -o '" ++ out_path ++ "'"
+
+makeAllMP3 ∷ IO ()
+makeAllMP3 = do
+  fs <- listDirectory "seata/mxml"
+  mapM_ (\f -> makeMP3 ("seata/mxml" </> f) ("seata/mp3" </> replaceExtension f ".mp3")) fs
+
+-- Generate mp3s for each set.
 
 
--- meas_notes ∷ Node → [Node]
--- meas_notes meas = map node (fromNode meas $/ element "note")
 
--- mk_measure ∷ [Node] → T.Text → Node
--- mk_measure ns idx = NodeElement elm
---   where elm  = Element "measure" attr ns
---         attr = M.singleton "number" idx
 
--- merge_measure ∷ (Node, Node) → Node
--- merge_measure (m1, m2) = mk_measure notes idx
---   where notes = concatMap meas_notes [m1,m2]
---         idx = head (fromNode m1 $| attribute "number")
 
--- add_sec ∷ [Node] → Section → [Node]
--- add_sec ns (_ana, ms) = case _ana of
---   Just ana → init ns ++ [merge_measure (last ns, ana)] ++ ms
---   Nothing  → ns ++ ms
+-- -- meas_notes ∷ Node → [Node]
+-- -- meas_notes meas = map node (fromNode meas $/ element "note")
+
+-- -- mk_measure ∷ [Node] → T.Text → Node
+-- -- mk_measure ns idx = NodeElement elm
+-- --   where elm  = Element "measure" attr ns
+-- --         attr = M.singleton "number" idx
+
+-- -- merge_measure ∷ (Node, Node) → Node
+-- -- merge_measure (m1, m2) = mk_measure notes idx
+-- --   where notes = concatMap meas_notes [m1,m2]
+-- --         idx = head (fromNode m1 $| attribute "number")
+
+-- -- add_sec ∷ [Node] → Section → [Node]
+-- -- add_sec ns (_ana, ms) = case _ana of
+-- --   Just ana → init ns ++ [merge_measure (last ns, ana)] ++ ms
+-- --   Nothing  → ns ++ ms

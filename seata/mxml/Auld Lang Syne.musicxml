@@ -30,19 +30,19 @@
         </midi-instrument>
       </score-part>
     </part-list>
-<part id="P1"><measure number="2"><sound tempo="132"/>
-      <direction placement="above">
-        <direction-type>
-          <rehearsal font-size="14" font-weight="bold">A</rehearsal>
-          </direction-type>
-        </direction>
+<part id="P1"><measure number="2" width="229.28"><sound tempo="132"/>
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <direction placement="above" system="only-top">
+        <direction-type>
+          <rehearsal default-x="-13" default-y="23.53" font-size="14" font-weight="bold" relative-y="30">A</rehearsal>
+          </direction-type>
+        </direction>
+      <note default-x="13" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -50,10 +50,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-45"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="82.11" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -69,7 +69,7 @@
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="118.45" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -79,7 +79,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="172.97" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -90,14 +90,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="3">
+      </measure><measure number="3" width="229.28">
       <harmony print-frame="no">
         <root>
           <root-step>E</root-step>
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -105,10 +105,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-35"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="82.11" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -124,7 +124,7 @@
           </root>
         <kind text="7">dominant</kind>
         </harmony>
-      <note>
+      <note default-x="118.45" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -134,7 +134,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="172.97" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -145,14 +145,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="4">
+      </measure><measure number="4" width="229.28">
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -160,10 +160,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-45"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="82.11" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -179,7 +179,7 @@
           </root>
         <kind text="7">dominant</kind>
         </harmony>
-      <note>
+      <note default-x="118.45" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -190,7 +190,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="172.97" default-y="-25">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -200,14 +200,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="5">
+      </measure><measure number="5" width="172.98">
       <harmony print-frame="no">
         <root>
           <root-step>G</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-20">
         <pitch>
           <step>B</step>
           <octave>4</octave>
@@ -215,10 +215,10 @@
         <duration>6</duration>
         <voice>1</voice>
         <type>half</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-15"/>
         <stem>down</stem>
         </note>
-      <note>
+      <note default-x="116.66" default-y="-20">
         <pitch>
           <step>B</step>
           <octave>4</octave>
@@ -228,15 +228,23 @@
         <type>quarter</type>
         <stem>down</stem>
         </note>
-      </measure><measure number="6">
-      <print new-system="yes"/>
+      </measure><measure number="6" width="324.76">
+      <print new-system="yes">
+        <system-layout>
+          <system-margins>
+            <left-margin>0</left-margin>
+            <right-margin>-0</right-margin>
+            </system-margins>
+          <system-distance>100</system-distance>
+          </system-layout>
+        </print>
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="89.31" default-y="-25">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -244,10 +252,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="107.3" default-y="-25"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="164.59" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -264,7 +272,7 @@
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="204.18" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -275,7 +283,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="263.57" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -285,14 +293,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="7">
+      </measure><measure number="7" width="268.25">
       <harmony print-frame="no">
         <root>
           <root-step>E</root-step>
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -300,10 +308,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-35"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="88.28" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -313,7 +321,7 @@
         <type>eighth</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="127.88" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -323,7 +331,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="187.26" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -335,7 +343,7 @@
         <stem>up</stem>
         <beam number="1">begin</beam>
         </note>
-      <note>
+      <note default-x="226.86" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -346,14 +354,14 @@
         <stem>up</stem>
         <beam number="1">end</beam>
         </note>
-      </measure><measure number="8">
+      </measure><measure number="8" width="248.45">
       <harmony print-frame="no">
         <root>
           <root-step>B</root-step>
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -361,10 +369,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-45"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="88.28" default-y="-55">
         <pitch>
           <step>B</step>
           <octave>3</octave>
@@ -380,7 +388,7 @@
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="127.88" default-y="-55">
         <pitch>
           <step>B</step>
           <octave>3</octave>
@@ -396,7 +404,7 @@
           </root>
         <kind text="7">dominant</kind>
         </harmony>
-      <note>
+      <note default-x="187.26" default-y="-60">
         <pitch>
           <step>A</step>
           <octave>3</octave>
@@ -406,14 +414,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="9">
+      </measure><measure number="9" width="187.11">
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -421,7 +429,7 @@
         <duration>6</duration>
         <voice>1</voice>
         <type>half</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-45"/>
         <stem>up</stem>
         </note>
       <harmony print-frame="no">
@@ -430,7 +438,7 @@
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="125.93" default-y="-20">
         <pitch>
           <step>B</step>
           <octave>4</octave>
@@ -440,20 +448,28 @@
         <type>quarter</type>
         <stem>down</stem>
         </note>
-      </measure><measure number="10">
-      <print new-system="yes"/>
-      <direction placement="above">
+      </measure><measure number="10" width="330.05">
+      <print new-system="yes">
+        <system-layout>
+          <system-margins>
+            <left-margin>0</left-margin>
+            <right-margin>-0</right-margin>
+            </system-margins>
+          <system-distance>100</system-distance>
+          </system-layout>
+        </print>
+      <harmony print-frame="no">
+        <root>
+          <root-step>D</root-step>
+          </root>
+        <kind>major</kind>
+        </harmony>
+      <direction placement="above" system="only-top">
         <direction-type>
-          <rehearsal font-size="14" font-weight="bold">B</rehearsal>
+          <rehearsal default-x="-25" font-size="14" font-weight="bold" relative-y="30">B</rehearsal>
           </direction-type>
         </direction>
-      <harmony print-frame="no">
-        <root>
-          <root-step>D</root-step>
-          </root>
-        <kind>major</kind>
-        </harmony>
-      <note>
+      <note default-x="89.31" default-y="-25">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -461,10 +477,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="107.3" default-y="-25"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="166.3" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -481,7 +497,7 @@
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="206.79" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -492,7 +508,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="267.52" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -502,14 +518,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="11">
+      </measure><measure number="11" width="253.75">
       <harmony print-frame="no">
         <root>
           <root-step>E</root-step>
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -517,10 +533,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-35"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="89.99" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -530,7 +546,7 @@
         <type>eighth</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="130.48" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -546,7 +562,7 @@
           </root>
         <kind text="7">dominant</kind>
         </harmony>
-      <note>
+      <note default-x="191.21" default-y="-20">
         <pitch>
           <step>B</step>
           <octave>4</octave>
@@ -556,14 +572,14 @@
         <type>quarter</type>
         <stem>down</stem>
         </note>
-      </measure><measure number="12">
+      </measure><measure number="12" width="253.75">
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-25">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -571,10 +587,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-25"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="89.99" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -591,7 +607,7 @@
           </root>
         <kind text="7">dominant</kind>
         </harmony>
-      <note>
+      <note default-x="130.48" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -602,7 +618,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="191.21" default-y="-25">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -612,14 +628,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="13">
+      </measure><measure number="13" width="191.02">
       <harmony print-frame="no">
         <root>
           <root-step>G</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-20">
         <pitch>
           <step>B</step>
           <octave>4</octave>
@@ -627,10 +643,10 @@
         <duration>6</duration>
         <voice>1</voice>
         <type>half</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-15"/>
         <stem>down</stem>
         </note>
-      <note>
+      <note default-x="128.49" default-y="-20">
         <pitch>
           <step>B</step>
           <octave>4</octave>
@@ -640,15 +656,23 @@
         <type>quarter</type>
         <stem>down</stem>
         </note>
-      </measure><measure number="14">
-      <print new-system="yes"/>
+      </measure><measure number="14" width="337.9">
+      <print new-system="yes">
+        <system-layout>
+          <system-margins>
+            <left-margin>0</left-margin>
+            <right-margin>0</right-margin>
+            </system-margins>
+          <system-distance>100</system-distance>
+          </system-layout>
+        </print>
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="89.31" default-y="-25">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -656,10 +680,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="107.3" default-y="-25"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="168.82" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -676,7 +700,7 @@
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="210.64" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -687,7 +711,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="273.37" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -697,14 +721,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="15">
+      </measure><measure number="15" width="282.5">
       <harmony print-frame="no">
         <root>
           <root-step>E</root-step>
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -712,10 +736,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-35"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="92.52" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -725,7 +749,7 @@
         <type>eighth</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="134.34" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -735,7 +759,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="197.06" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -747,7 +771,7 @@
         <stem>up</stem>
         <beam number="1">begin</beam>
         </note>
-      <note>
+      <note default-x="238.88" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -758,14 +782,14 @@
         <stem>up</stem>
         <beam number="1">end</beam>
         </note>
-      </measure><measure number="16">
+      </measure><measure number="16" width="261.59">
       <harmony print-frame="no">
         <root>
           <root-step>B</root-step>
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -773,10 +797,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-45"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="92.52" default-y="-55">
         <pitch>
           <step>B</step>
           <octave>3</octave>
@@ -792,7 +816,7 @@
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="134.34" default-y="-55">
         <pitch>
           <step>B</step>
           <octave>3</octave>
@@ -808,7 +832,7 @@
           </root>
         <kind text="7">dominant</kind>
         </harmony>
-      <note>
+      <note default-x="197.06" default-y="-60">
         <pitch>
           <step>A</step>
           <octave>3</octave>
@@ -818,14 +842,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="17">
+      </measure><measure number="17" width="146.58">
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -833,25 +857,25 @@
         <duration>6</duration>
         <voice>1</voice>
         <type>half</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-45"/>
         <stem>up</stem>
         </note>
       <barline location="right">
         <bar-style>light-heavy</bar-style>
         </barline>
-      </measure><measure number="2">
-      <direction placement="above">
-        <direction-type>
-          <rehearsal font-size="14" font-weight="bold">A</rehearsal>
-          </direction-type>
-        </direction>
+      </measure><measure number="2" width="229.28">
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <direction placement="above" system="only-top">
+        <direction-type>
+          <rehearsal default-x="-13" default-y="23.53" font-size="14" font-weight="bold" relative-y="30">A</rehearsal>
+          </direction-type>
+        </direction>
+      <note default-x="13" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -859,10 +883,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-45"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="82.11" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -878,7 +902,7 @@
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="118.45" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -888,7 +912,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="172.97" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -899,14 +923,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="3">
+      </measure><measure number="3" width="229.28">
       <harmony print-frame="no">
         <root>
           <root-step>E</root-step>
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -914,10 +938,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-35"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="82.11" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -933,7 +957,7 @@
           </root>
         <kind text="7">dominant</kind>
         </harmony>
-      <note>
+      <note default-x="118.45" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -943,7 +967,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="172.97" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -954,14 +978,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="4">
+      </measure><measure number="4" width="229.28">
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -969,10 +993,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-45"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="82.11" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -988,7 +1012,7 @@
           </root>
         <kind text="7">dominant</kind>
         </harmony>
-      <note>
+      <note default-x="118.45" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -999,7 +1023,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="172.97" default-y="-25">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -1009,14 +1033,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="5">
+      </measure><measure number="5" width="172.98">
       <harmony print-frame="no">
         <root>
           <root-step>G</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-20">
         <pitch>
           <step>B</step>
           <octave>4</octave>
@@ -1024,10 +1048,10 @@
         <duration>6</duration>
         <voice>1</voice>
         <type>half</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-15"/>
         <stem>down</stem>
         </note>
-      <note>
+      <note default-x="116.66" default-y="-20">
         <pitch>
           <step>B</step>
           <octave>4</octave>
@@ -1037,15 +1061,23 @@
         <type>quarter</type>
         <stem>down</stem>
         </note>
-      </measure><measure number="6">
-      <print new-system="yes"/>
+      </measure><measure number="6" width="324.76">
+      <print new-system="yes">
+        <system-layout>
+          <system-margins>
+            <left-margin>0</left-margin>
+            <right-margin>-0</right-margin>
+            </system-margins>
+          <system-distance>100</system-distance>
+          </system-layout>
+        </print>
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="89.31" default-y="-25">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -1053,10 +1085,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="107.3" default-y="-25"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="164.59" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1073,7 +1105,7 @@
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="204.18" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1084,7 +1116,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="263.57" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1094,14 +1126,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="7">
+      </measure><measure number="7" width="268.25">
       <harmony print-frame="no">
         <root>
           <root-step>E</root-step>
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -1109,10 +1141,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-35"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="88.28" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1122,7 +1154,7 @@
         <type>eighth</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="127.88" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -1132,7 +1164,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="187.26" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1144,7 +1176,7 @@
         <stem>up</stem>
         <beam number="1">begin</beam>
         </note>
-      <note>
+      <note default-x="226.86" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -1155,14 +1187,14 @@
         <stem>up</stem>
         <beam number="1">end</beam>
         </note>
-      </measure><measure number="8">
+      </measure><measure number="8" width="248.45">
       <harmony print-frame="no">
         <root>
           <root-step>B</root-step>
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1170,10 +1202,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-45"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="88.28" default-y="-55">
         <pitch>
           <step>B</step>
           <octave>3</octave>
@@ -1189,7 +1221,7 @@
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="127.88" default-y="-55">
         <pitch>
           <step>B</step>
           <octave>3</octave>
@@ -1205,7 +1237,7 @@
           </root>
         <kind text="7">dominant</kind>
         </harmony>
-      <note>
+      <note default-x="187.26" default-y="-60">
         <pitch>
           <step>A</step>
           <octave>3</octave>
@@ -1215,14 +1247,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="9">
+      </measure><measure number="9" width="187.11">
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1230,7 +1262,7 @@
         <duration>6</duration>
         <voice>1</voice>
         <type>half</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-45"/>
         <stem>up</stem>
         </note>
       <harmony print-frame="no">
@@ -1239,7 +1271,7 @@
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="125.93" default-y="-20">
         <pitch>
           <step>B</step>
           <octave>4</octave>
@@ -1249,20 +1281,28 @@
         <type>quarter</type>
         <stem>down</stem>
         </note>
-      </measure><measure number="10">
-      <print new-system="yes"/>
-      <direction placement="above">
+      </measure><measure number="10" width="330.05">
+      <print new-system="yes">
+        <system-layout>
+          <system-margins>
+            <left-margin>0</left-margin>
+            <right-margin>-0</right-margin>
+            </system-margins>
+          <system-distance>100</system-distance>
+          </system-layout>
+        </print>
+      <harmony print-frame="no">
+        <root>
+          <root-step>D</root-step>
+          </root>
+        <kind>major</kind>
+        </harmony>
+      <direction placement="above" system="only-top">
         <direction-type>
-          <rehearsal font-size="14" font-weight="bold">B</rehearsal>
+          <rehearsal default-x="-25" font-size="14" font-weight="bold" relative-y="30">B</rehearsal>
           </direction-type>
         </direction>
-      <harmony print-frame="no">
-        <root>
-          <root-step>D</root-step>
-          </root>
-        <kind>major</kind>
-        </harmony>
-      <note>
+      <note default-x="89.31" default-y="-25">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -1270,10 +1310,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="107.3" default-y="-25"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="166.3" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1290,7 +1330,7 @@
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="206.79" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1301,7 +1341,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="267.52" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1311,14 +1351,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="11">
+      </measure><measure number="11" width="253.75">
       <harmony print-frame="no">
         <root>
           <root-step>E</root-step>
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -1326,10 +1366,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-35"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="89.99" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1339,7 +1379,7 @@
         <type>eighth</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="130.48" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -1355,7 +1395,7 @@
           </root>
         <kind text="7">dominant</kind>
         </harmony>
-      <note>
+      <note default-x="191.21" default-y="-20">
         <pitch>
           <step>B</step>
           <octave>4</octave>
@@ -1365,14 +1405,14 @@
         <type>quarter</type>
         <stem>down</stem>
         </note>
-      </measure><measure number="12">
+      </measure><measure number="12" width="253.75">
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-25">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -1380,10 +1420,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-25"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="89.99" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1400,7 +1440,7 @@
           </root>
         <kind text="7">dominant</kind>
         </harmony>
-      <note>
+      <note default-x="130.48" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1411,7 +1451,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="191.21" default-y="-25">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -1421,14 +1461,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="13">
+      </measure><measure number="13" width="191.02">
       <harmony print-frame="no">
         <root>
           <root-step>G</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-20">
         <pitch>
           <step>B</step>
           <octave>4</octave>
@@ -1436,10 +1476,10 @@
         <duration>6</duration>
         <voice>1</voice>
         <type>half</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-15"/>
         <stem>down</stem>
         </note>
-      <note>
+      <note default-x="128.49" default-y="-20">
         <pitch>
           <step>B</step>
           <octave>4</octave>
@@ -1449,15 +1489,23 @@
         <type>quarter</type>
         <stem>down</stem>
         </note>
-      </measure><measure number="14">
-      <print new-system="yes"/>
+      </measure><measure number="14" width="337.9">
+      <print new-system="yes">
+        <system-layout>
+          <system-margins>
+            <left-margin>0</left-margin>
+            <right-margin>0</right-margin>
+            </system-margins>
+          <system-distance>100</system-distance>
+          </system-layout>
+        </print>
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="89.31" default-y="-25">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -1465,10 +1513,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="107.3" default-y="-25"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="168.82" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1485,7 +1533,7 @@
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="210.64" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1496,7 +1544,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="273.37" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1506,14 +1554,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="15">
+      </measure><measure number="15" width="282.5">
       <harmony print-frame="no">
         <root>
           <root-step>E</root-step>
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -1521,10 +1569,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-35"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="92.52" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1534,7 +1582,7 @@
         <type>eighth</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="134.34" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -1544,7 +1592,7 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="197.06" default-y="-35">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1556,7 +1604,7 @@
         <stem>up</stem>
         <beam number="1">begin</beam>
         </note>
-      <note>
+      <note default-x="238.88" default-y="-40">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -1567,14 +1615,14 @@
         <stem>up</stem>
         <beam number="1">end</beam>
         </note>
-      </measure><measure number="16">
+      </measure><measure number="16" width="261.59">
       <harmony print-frame="no">
         <root>
           <root-step>B</root-step>
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1582,10 +1630,10 @@
         <duration>3</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-45"/>
         <stem>up</stem>
         </note>
-      <note>
+      <note default-x="92.52" default-y="-55">
         <pitch>
           <step>B</step>
           <octave>3</octave>
@@ -1601,7 +1649,7 @@
           </root>
         <kind text="m">minor</kind>
         </harmony>
-      <note>
+      <note default-x="134.34" default-y="-55">
         <pitch>
           <step>B</step>
           <octave>3</octave>
@@ -1617,7 +1665,7 @@
           </root>
         <kind text="7">dominant</kind>
         </harmony>
-      <note>
+      <note default-x="197.06" default-y="-60">
         <pitch>
           <step>A</step>
           <octave>3</octave>
@@ -1627,14 +1675,14 @@
         <type>quarter</type>
         <stem>up</stem>
         </note>
-      </measure><measure number="17">
+      </measure><measure number="17" width="146.58">
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
           </root>
         <kind>major</kind>
         </harmony>
-      <note>
+      <note default-x="13" default-y="-45">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1642,7 +1690,7 @@
         <duration>6</duration>
         <voice>1</voice>
         <type>half</type>
-        <dot/>
+        <dot default-x="30.99" default-y="-45"/>
         <stem>up</stem>
         </note>
       <barline location="right">
